@@ -19,4 +19,6 @@ group :development, :test do
   gem 'launchy'
   gem 'better_errors'
   gem 'pry'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
