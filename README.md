@@ -13,4 +13,6 @@ We're making a clone of Stack Overflow.
 ##Trello
 Take a look at our features in progress, here's a link to our Trello page: [Trello: Hack Overflow](https://trello.com/hackoverflow).
 
+##Schema
+![schema](/images/schema.png "schema")
 
