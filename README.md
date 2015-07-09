@@ -2,10 +2,10 @@
 A Stack Overflow clone
 
 ##Authors
-[Jordan Coutu](https://github.com/JMC11)
-[Thomas Goldenberg](https://github.com/tgoldenberg)
-[Taylor Hang](https://github.com/sixthand6th)
-[Denny Tek](https://github.com/tekd)
+###[Jordan Coutu](https://github.com/JMC11)
+###[Thomas Goldenberg](https://github.com/tgoldenberg)
+###[Taylor Hang](https://github.com/sixthand6th)
+###[Denny Tek](https://github.com/tekd)
 
 ##Overview
 We're making a clone of Stack Overflow.
