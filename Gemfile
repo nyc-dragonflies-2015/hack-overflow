@@ -17,6 +17,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'better_errors'
   gem 'pry'
+  gem 'faker'
 end
 
 group :test do
