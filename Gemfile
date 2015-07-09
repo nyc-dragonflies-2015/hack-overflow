@@ -8,6 +8,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'byebug'
@@ -16,7 +17,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'better_errors'
   gem 'pry'
-
 end
 
 group :test do
