@@ -14,11 +14,15 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
+  gem 'better_errors'
+  gem 'pry'
+
+end
+
+group :test do
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'launchy'
-  gem 'better_errors'
-  gem 'pry'
-  gem 'cucumber-rails'
-  gem 'database_cleaner'
 end
