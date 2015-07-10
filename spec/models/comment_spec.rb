@@ -9,10 +9,6 @@ describe Comment do
     expect(FactoryGirl.create(:comment)).to respond_to :commentable
   end
 
-  it 'should respond to Tags' do
-    expect(FactoryGirl.create(:comment)).to respond_to :tags
-  end
-
   it 'should not save without a valid user' do
     expect(FactoryGirl.build(:comment, user_id: nil)).to_not be_valid
   end
