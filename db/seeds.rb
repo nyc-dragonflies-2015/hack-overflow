@@ -21,5 +21,5 @@ User.all.each_with_index do |user, index|
   question = Question.all.sample
   answer = Answer.create(question_id: question.id, body: Faker::Lorem.paragraph, user_id: User.first.id)
   user.comments << Comment.create(commentable_type: "Question", commentable_id: question.id, body: Faker::Lorem.sentence)
-  user.answers << Answer.create(body: Faker::Lorem.paragraph)
+  user.answers << Answer.create(body: Faker::Lorem.paragraph, question_id: question.id)
 end
