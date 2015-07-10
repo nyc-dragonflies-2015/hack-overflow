@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe QuestionsController do
   context '#new' do
     it 'should render a form to create a new question' do

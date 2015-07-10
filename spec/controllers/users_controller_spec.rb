@@ -1,6 +1,32 @@
+require 'rails_helper'
+
 describe UsersController do
   context "#new" do
     it 'should render a registration form to the visitor' do
+      get :new
+      expect(assigns(:user)).to be_a User
+    end
+  end
+
+  context '#create' do
+    it 'should create a new user' do
+      post :create, user: FactoryGirl.attributes_for(:user)
+      expect(session[:user_id]).to_not eq(nil)
+    end
+
+    it 'should not create a user with invalid attributes' do
+      post :create, user: FactoryGirl.attributes_for(:user, username: nil)
+      expect(session[:user_id]).to eq(nil)
+    end
+
+    it 'should redirect to the root path if successful' do
+      post :create, user: FactoryGirl.attributes_for(:user)
+      expect(response).to redirect_to(root_url)
+    end
+
+    it 'should display error messages if no username is provided' do
+      post :create, user: FactoryGirl.attributes_for(:user, username: nil)
+      expect(flash[:alert]).to eq(["Username can't be blank"])
     end
   end
 

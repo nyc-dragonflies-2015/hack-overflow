@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe CommentsController do
   context '#create' do
     it 'should create a new comment' do
