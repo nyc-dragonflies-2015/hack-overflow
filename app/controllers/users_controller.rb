@@ -14,6 +14,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to root_path, notice: "Successfully edited account"
+    else
+      flash[:alert] = @user.errors.full_messages
+      render :edit
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
