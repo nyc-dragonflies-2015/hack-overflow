@@ -1,12 +1,33 @@
 <h1>SHOW Page </h1>
 
-<%= render partial: 'question' %>
-<%= render partial: 'question_comment' %>
+<%= render 'question', question: @question %>
 
-<hr>
+<% @question.comments.each do |comment| %>
+
+  <%= render 'comment', comment: @comment %>
+
+<% end %>
+
+<hr/>
 
 <h3>Answers</h3>
 
-<%= render partial: 'question_answer'%>
-<%= render partial: 'answer_comment' %>
+  <% @answers.each do |answer| %>
+
+    <div class = "render-question-answer">
+
+      <%= render 'answer' %>
+
+    </div>
+
+    <% answer.comments.all.each do |comment| %>
+
+      <%= render 'comment', comment: @comment %>
+
+    <% end %>
+
+  <% end %>
+
+<hr/>
+
 
