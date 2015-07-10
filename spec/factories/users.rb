@@ -1,10 +1,15 @@
  require 'faker'
- require 'rails_helper'
 
 FactoryGirl.define do
+  sequence :email do |n|
+    "email#{n}@factory.com"
+  end
+  sequence :username do |n|
+    Faker::Name.first_name + "#{n}"
+  end
   factory :user do
-    username Faker::Name.name
-    email  Faker::Internet.email
+    username
     password "password"
+    email
   end
 end

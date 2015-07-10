@@ -8,7 +8,7 @@ describe Tag do
   end
 
   it 'should not save without a name' do
-    expect(FactoryGirl.create(:tag, name: nil)).to_not be_valid
+    expect(FactoryGirl.build(:tag, name: nil)).to_not be_valid
   end
 
   it 'should save with valid params' do
