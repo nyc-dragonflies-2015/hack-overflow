@@ -1,8 +1,8 @@
-class TagsController < ActionController::Base
+class TagsController < ApplicationController
 
-  # def index
-  #   @question = Question.all
-  # end
+  def index
+    @tag = Tag.all
+  end
 
   def show
     @tag = Tag.find(params[:id])
@@ -13,32 +13,13 @@ class TagsController < ActionController::Base
   end
 
   def create
-    if @question.save
     @tag = Tag.new(tag_params)
-      redirect_to questions_path
+    if @tag.save
+      render json: @tag.to_json
+    else
+      render :new
     end
   end
-
-  # def edit
-  #   @question = Question.find(params[:id])
-  # end
-
-  # def update
-  #   @question = Question.find(params[:id])
-  #   @question.assign_attributes(question_params)
-  #   if @question.save
-  #     redirect_to @question
-  #   else
-  #     render :edit
-  #   end
-  # end
-
-  # def destroy
-  #   @question = Question.find(params[:id])
-  #   @question.destroy
-  #   flash[:notice] = "Question has been deleted"
-  #   redirect_to questions_path
-  # end
 
   private
 
