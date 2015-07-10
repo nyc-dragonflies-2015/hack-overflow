@@ -5,10 +5,12 @@ class VotesController < ApplicationController
     @vote.user_id = current_user.id
       if @vote.voteable_type == 'Question'
         @question = Question.find(@vote.voteable_id)
-        @vote.question_id = @question.id
+                                            #deleted question id lines because votes do not have question ids
       elsif @vote.voteable_type == 'Answer'
         @answer = Answer.find(@vote.voteable_id)
-        @vote.question_id = @question.id
+      elsif @vote.voteable_type == 'Comment'
+        @comment = Comment.find(@vote.voteable_id)
+                                            #added comments because they can be voted on
       end
       if @vote.save
         render json: @vote.to_json
