@@ -42,6 +42,10 @@ describe UsersController do
 
   context 'destroy' do
     it 'should delete the users account' do
+      user = FactoryGirl.create(:user)
+      delete :destroy, id: user.id
+      expect(session[:user_id]).to eq(nil)
+      expect(User.find_by(id: user.id)).to eq(nil)
     end
   end
 end
