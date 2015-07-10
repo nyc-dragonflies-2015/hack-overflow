@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
     if @comment.save
       if @comment.commentable_type == 'Question'
         @question = Question.find(@comment.commentable_id)
