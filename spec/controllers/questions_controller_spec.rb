@@ -11,12 +11,15 @@ describe QuestionsController do
   context '#create' do
     it 'should create a new question in the database' do
       user = FactoryGirl.create(:user)
+      session[:user_id] = user.id
       expect{
         post :create, question: FactoryGirl.attributes_for(:question, user_id: user.id)
       }.to change(Question, :count).by(1)
     end
 
     it 'should not save an invalid question' do
+      user = FactoryGirl.create(:user)
+      session[:user_id] = user.id
       expect{
         post :create, question: FactoryGirl.attributes_for(:question, user_id: nil)
       }.to change(Question, :count).by(0)
@@ -24,6 +27,7 @@ describe QuestionsController do
 
     it 'should render the proper error messages' do
       user = FactoryGirl.create(:user)
+      session[:user_id] = user.id
       post :create, question: FactoryGirl.attributes_for(:question, title: nil, user_id: user.id)
       expect(flash[:alert]).to eq(["Title can't be blank"])
     end
@@ -31,9 +35,20 @@ describe QuestionsController do
 
   context '#edit' do
     it 'should allow the user to edit their own question' do
+      user = FactoryGirl.create(:user)
+      session[:user_id] = user.id
+      question = FactoryGirl.create(:question)
+      get :edit, id: question.id
+      expect(assigns(:question)).to be_a Question
     end
 
     it 'should not allow a user who is not the author to edit the question' do
+      user = FactoryGirl.create(:user)
+      secondUser = FactoryGirl.create(:user)
+      question = FactoryGirl.create(:question, user_id: secondUser.id)
+      session[:user_id] = user.id
+      get :edit, id: question.id
+      expect(response).to redirect_to(root_path)
     end
   end
 
