@@ -32,6 +32,9 @@ describe UsersController do
 
   context '#edit' do
     it 'should allow the user to edit their account information' do
+      user = FactoryGirl.create(:user)
+      get :edit, id: user.id
+      expect(assigns(:user)).to be_a User
     end
   end
 
