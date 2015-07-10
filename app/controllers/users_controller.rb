@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(current_user)
   end
 
   def update
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find(current_user)
     @user.destroy
     session[:user_id] = nil
     redirect_to root_path

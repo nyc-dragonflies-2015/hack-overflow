@@ -7,3 +7,7 @@
   <%= f.password_field :password %>
   <%= f.submit "Edit Account" %>
 <% end %>
+
+<%= form_for @user, url: user_path, method: 'delete' do |f| %>
+  <%= f.submit 'Delete Your Account'%>
+<%end%>
