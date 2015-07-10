@@ -6,7 +6,6 @@ require 'pry'
 def get_paragraph
   uri = URI('http://hipsterjesus.com/api/?html=false')
   response = Net::HTTP.get_response(uri)
-  binding.pry
   body = JSON.parse(response.body)["text"]
   title = body.split(" ").first(8).join(" ")
   return [title, body]
