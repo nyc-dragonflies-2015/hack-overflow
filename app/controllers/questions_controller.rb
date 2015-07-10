@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-
   def index
     @question = Question.all
   end
@@ -10,12 +9,12 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    signup_redirect
+    require_logged_in
     @question = Question.new
   end
 
   def create
-    signup_redirect
+    require_logged_in
     @question = Question.new(question_params)
     if @question.save
       redirect_to @question
@@ -32,12 +31,13 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-    authenticate_user!(@question.user_id)
+    p @question
     @question.assign_attributes(question_params)
     if @question.save
-      redirect_to root_path
+      binding.pry
+      redirect_to @question
     else
-      render :edit
+      redirect_to :back
     end
   end
 

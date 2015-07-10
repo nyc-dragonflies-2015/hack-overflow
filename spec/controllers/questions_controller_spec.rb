@@ -54,6 +54,12 @@ describe QuestionsController do
 
   context '#update' do
     it 'should update the question in the database if the params are valid' do
+      user = FactoryGirl.create(:user)
+      question = FactoryGirl.create(:question, user_id: user.id, body: "Hello")
+      id = question.id
+      session[:user_id] = user.id
+      post :update, id: question.id, question: FactoryGirl.attributes_for(:question, user_id: user.id)
+      expect(Question.find(id).body).to_not eq("Hello")
     end
 
     it 'should render the proper error messages if the params are not valid' do
