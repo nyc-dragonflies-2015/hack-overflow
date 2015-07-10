@@ -43,6 +43,5 @@ describe User do
     it 'should respond to Votes' do
       expect(FactoryGirl.create(:user)).to respond_to :votes
     end
-
   end
 end
