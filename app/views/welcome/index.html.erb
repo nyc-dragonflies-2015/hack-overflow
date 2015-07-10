@@ -1,3 +1,5 @@
+<h1>Site Name to be Announced</h1>
+
 <%= form_for @user, url: create_session_path do |f| %>
   <div><%= f.label :username %>
   <%= f.text_field :username %></div>
@@ -6,9 +8,10 @@
   <%= f.submit "Login" %>
 <% end %>
 
-<% @question.each do |question| %>
+<% @questions.each do |question| %>
   <div><%= link_to question.title, question_path(question.id)%></div>
   <div><%= question.user.username%>
+  <div><%= question.view_count%>
   <br>
   <br>
 <%end%>
