@@ -18,10 +18,11 @@ group :development, :test do
   gem 'better_errors'
   gem 'pry'
   gem 'faker'
+  gem 'cucumber-rails'
 end
 
 group :test do
-  gem 'cucumber-rails', :require => false
+
   gem 'database_cleaner'
   gem 'capybara'
   gem 'factory_girl_rails'
