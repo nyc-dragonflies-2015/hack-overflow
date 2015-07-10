@@ -28,9 +28,11 @@
 
       <%= render 'answer', answer: answer %>
 
-
-
     </div>
+
+    <button id="answer-comment-button">Add Comment</button>
+
+    <%= render partial: "/comments/answer_comment" %>
 
     <% answer.comments.all.each do |comment| %>
 

@@ -1,6 +1,6 @@
   <div class="comment-form" style="display:none;">
     <%= form_for @comment, url: new_comment_path, id: "a-comment" do |f| %>
-      <%= f.text_area :body, size: "100x10" %>
+      <%= f.text_area :body, size: "100x5" %>
       <%= f.hidden_field :commentable_type, value: "Answer" %>
       <%= f.hidden_field :commentable_id, value: @answer.id %>
       <%= f.submit :"Submit" %>
