@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <% if require_logged_in %>
+  <% if is_authenticated? %>
     <%= link_to 'Logout', logout_path, method: 'delete' %>
     <%= link_to 'Edit Your Account', edit_user_path%>
   <%else%>
