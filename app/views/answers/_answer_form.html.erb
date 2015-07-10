@@ -1,1 +1,13 @@
-_answer_form.html.erb
+<div class="add-answer">
+  <h4>Add an answer</h4>
+
+  <div class="answer-form">
+    <%= form_for @answer, url: new_answer_path do |f| %>
+      <%= f.text_field :body %>
+      <%= f.hidden_field :commentable_type, value: "Answer" %>
+      <%= f.hidden_field :commentable_id, value: @answer.id %>
+      <%= f.submit :"Add answer" %>
+    <% end %>
+  </div>
+
+</div>
