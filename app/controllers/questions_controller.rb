@@ -31,6 +31,7 @@ class QuestionsController < ActionController::Base
       redirect_to @question
     else
       render :edit
+    end
   end
 
   def destroy
