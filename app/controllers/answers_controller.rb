@@ -3,14 +3,12 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answer_params)
     @answer.user_id = current_user.id
-    @question = Question.find(answer_params[:question_id])
-    @answer.question_id = @question.id
     if @answer.save
       username = User.find(@answer.user.id).username
-      data = {comment: @comment, username: username}
+      data = {answer: @answer, username: username}
       render json: data.to_json
     else
-      redirect_to :back
+      render json: {error: "Didn't work"}.to_json
     end
   end
 
