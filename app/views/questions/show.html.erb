@@ -1,6 +1,6 @@
 <h1>SHOW Page </h1>
 
-<%= render partial: 'question', @question: @question %>
+<%= render 'question', question: @question %>
 
 <% @question.comments.each do |comment| %>
 
