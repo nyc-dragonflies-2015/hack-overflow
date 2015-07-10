@@ -6,4 +6,8 @@ module ApplicationHelper
   def is_authenticated?
     return !!session[:user_id]
   end
+
+  def current_user
+    @user.id = session[:user_id]
+  end
 end
