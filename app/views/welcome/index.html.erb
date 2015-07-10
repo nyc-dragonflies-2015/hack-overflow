@@ -1,7 +1,14 @@
 <%= form_for @user, url: create_session_path do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <div><%= f.label :username %>
+  <%= f.text_field :username %></div>
+  <div><%= f.label :password %>
+  <%= f.password_field :password %></div>
   <%= f.submit "Login" %>
 <% end %>
+
+<% @question.each do |question| %>
+  <div><%= link_to question.title, question_path(question.id)%></div>
+  <div><%= question.user.username%>
+  <br>
+  <br>
+<%end%>

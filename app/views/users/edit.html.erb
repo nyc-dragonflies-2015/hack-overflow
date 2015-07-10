@@ -1,9 +1,12 @@
 <%= form_for @user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.submit "Edit Account" %>
-<% end %>
+  <%=f.label :username%>
+  <%=f.text_field :username%>
+  <%=f.label :email%>
+  <%=f.text_field :email%>
+  <%=f.label :password %>
+  <%=f.password_field :password %>
+  <%= f.submit 'Update Your Account'%>
+<%end%>
+
+<%= link_to 'Delete Account', delete_user_path(current_user), method: :delete %>
+
