@@ -40,6 +40,10 @@ describe UsersController do
 
   context '#update' do
     it 'should save the changes of the user account to the database' do
+      user = FactoryGirl.create(:user)
+      username = user.username
+      post :update, id: user.id, user: FactoryGirl.attributes_for(:user)
+      expect(User.find(user.id)).to_not eq(username)
     end
   end
 
