@@ -8,4 +8,5 @@ class Answer < ActiveRecord::Base
   validates :body, presence: true
   validates :user, presence: true
   validates :question, presence: true
+
 end
