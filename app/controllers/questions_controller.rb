@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @answers = @question.answers.all
     @comment = Comment.new
+    @answer = Answer.new
   end
 
   def new

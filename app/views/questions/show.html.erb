@@ -18,13 +18,17 @@
 
 <h3>Answers</h3>
 
-<button id="question-comment-button">Add Answer</button>
+<button id="answer-button">Add Answer</button>
+
+<%= render partial: "/answers/answer_form" %>
 
   <% @answers.each do |answer| %>
 
     <div class = "render-question-answer">
 
       <%= render 'answer', answer: answer %>
+
+
 
     </div>
 
