@@ -17,10 +17,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'better_errors'
   gem 'pry'
+  gem 'faker'
 end
 
 group :test do
-  gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'capybara'
   gem 'factory_girl_rails'
