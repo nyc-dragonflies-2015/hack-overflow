@@ -1,4 +1,4 @@
-class QuestionsController < ActionController::Base
+class QuestionsController < ApplicationController
 
   def index
     @question = Question.all
@@ -15,7 +15,7 @@ class QuestionsController < ActionController::Base
   def create
     @question = Question.new(question_params)
     if @question.save
-      redirect_to questions_path
+      redirect_to root_path
     end
   end
 
@@ -27,7 +27,7 @@ class QuestionsController < ActionController::Base
     @question = Question.find(params[:id])
     @question.assign_attributes(question_params)
     if @question.save
-      redirect_to @question
+      redirect_to root_path
     else
       render :edit
     end
@@ -37,7 +37,7 @@ class QuestionsController < ActionController::Base
     @question = Question.find(params[:id])
     @question.destroy
     flash[:notice] = "Question has been deleted"
-    redirect_to questions_path
+    redirect_to root_path
   end
 
   private
