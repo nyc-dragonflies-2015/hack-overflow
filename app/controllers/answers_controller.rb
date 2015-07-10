@@ -6,7 +6,9 @@ class AnswersController < ApplicationController
     @question = Question.find(answer_params[:question_id])
     @answer.question_id = @question.id
     if @answer.save
-      render json: @comment.to_json
+      username = User.find(@answer.user.id).username
+      data = {comment: @comment, username: username}
+      render json: data.to_json
     else
       redirect_to :back
     end
