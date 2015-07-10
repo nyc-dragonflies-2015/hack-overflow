@@ -15,6 +15,9 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
+      redirect_to @question
+    else
+      flash[:alert] = @question.errors.full_messages
       redirect_to root_path
     end
   end
