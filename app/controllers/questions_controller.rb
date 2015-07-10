@@ -1,4 +1,4 @@
-class QuestionsController < ActionController::Base
+class QuestionsController < ApplicationController
 
   def index
     @question = Question.all
