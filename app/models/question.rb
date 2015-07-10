@@ -8,7 +8,7 @@ class Question < ActiveRecord::Base
   has_many :tags, through: :taggings
 
   validates :title, presence: true
-  validates :view_count, prescence: true
+  validates :view_count, presence: true
   validates :body, presence: true
   validates :user, presence: true
 
