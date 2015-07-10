@@ -2,9 +2,11 @@
 
 <%= render 'question', question: @question %>
 
+<h6>Comments</h6>
+
 <% @question.comments.each do |comment| %>
 
-  <%= render 'comment', comment: @comment %>
+  <%= render 'comment', comment: comment %>
 
 <% end %>
 
@@ -16,13 +18,13 @@
 
     <div class = "render-question-answer">
 
-      <%= render 'answer' %>
+      <%= render 'answer', answer: answer %>
 
     </div>
 
     <% answer.comments.all.each do |comment| %>
 
-      <%= render 'comment', comment: @comment %>
+      <%= render 'comment', comment: comment %>
 
     <% end %>
 
