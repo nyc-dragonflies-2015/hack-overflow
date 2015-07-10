@@ -22,7 +22,6 @@ describe Answer do
   end
 
   it 'should not save unless there is a body' do
-    binding.pry
     expect(FactoryGirl.build(:answer, body: nil)).to_not be_valid
   end
 
