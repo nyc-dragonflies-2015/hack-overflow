@@ -3,17 +3,18 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    if @comment.save
+    # if @comment.save
       if @comment.commentable_type == 'Question'
         @question = Question.find(@comment.commentable_id)
-        @question.comments << @comment.save
-        render json: @comment.to_json
-      else if @comment.commentable_type == 'Answer'
+        @comment.question_id = @question.id
+      elsif @comment.commentable_type == 'Answer'
         @answer = Answer.find(@comment.commentable_id)
-        @answer.comments << @comment.save
+        @comment.question_id = @question.id
+      end
+      if @comment.save
         render json: @comment.to_json
       else
-        redirect_to :back
+       ## redirect
       end
   end
 
