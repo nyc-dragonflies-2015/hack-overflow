@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
 
+  validates :username, :email, uniqueness: true, presence: true
+  validates :password_digest, presence: true
+  validates :password, length: { minimum: 6 }
 end
