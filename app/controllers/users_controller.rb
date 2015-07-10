@@ -20,7 +20,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    @user.assign_attributes(user_params)
+    if @user.save
       redirect_to root_path, notice: "Successfully edited account"
     else
       flash[:alert] = @user.errors.full_messages
