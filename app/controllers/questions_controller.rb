@@ -10,22 +10,29 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    signup_redirect
     @question = Question.new
   end
 
   def create
+    signup_redirect
     @question = Question.new(question_params)
     if @question.save
+      redirect_to @question
+    else
+      flash[:alert] = @question.errors.full_messages
       redirect_to root_path
     end
   end
 
   def edit
     @question = Question.find(params[:id])
+    authenticate_user!(@question.user_id)
   end
 
   def update
     @question = Question.find(params[:id])
+    authenticate_user!(@question.user_id)
     @question.assign_attributes(question_params)
     if @question.save
       redirect_to root_path
@@ -36,6 +43,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question = Question.find(params[:id])
+    authenticate_user!(@question.user_id)
     @question.destroy
     flash[:notice] = "Question has been deleted"
     redirect_to root_path
