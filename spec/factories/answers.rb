@@ -2,10 +2,8 @@ require 'faker'
 require 'rails_helper'
 
 FactoryGirl.define do
- factory :question do
-   title Faker::Lorem.sentence
+ factory :answer do
    body  Faker::Lorem.paragraph
    user
-   view_count 0
  end
 end
