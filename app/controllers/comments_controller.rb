@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
       data = {comment: @comment, username: username}
     elsif @comment.commentable_type == 'Answer'
       @answer = Answer.find(@comment.commentable_id)
-      @comment.question_id = @question.id
+      username = User.find(current_user.id).username
+      data = {comment: @comment, username: username}
     end
     if @comment.save
       render json: data.to_json
