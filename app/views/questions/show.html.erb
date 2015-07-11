@@ -2,7 +2,7 @@
 
 <%= render 'question', question: @question %>
 
-<h6>Comments</h6>
+<h6 id="q-comment">Comments</h6>
 
 <% @question.comments.each do |comment| %>
   <%= render 'comment', comment: comment %>
