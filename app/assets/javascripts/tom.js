@@ -20,7 +20,12 @@ $(document).ready(function() {
       data: {answer: {body: body, question_id: questionId}},
       dataType: "json"
     }).done(function(data) {
-      console.log(data);
+      var body = data.answer.body
+      var username = data.username
+      var partial = ""
+      partial += "<p>" + body + "<p>";
+      partial += "<p>" + username + "<p>";
+      $('.answer_form').after(partial);
     }).fail(function(err) {
       console.log(err);
     })
