@@ -26,6 +26,7 @@ $(document).ready(function() {
       partial += "<p>" + body + "<p>";
       partial += "<p>" + username + "<p>";
       $('.answer_form').after(partial).toggle();
+      $('#answer_body').val('');
     }).fail(function(err) {
       console.log(err);
     })
