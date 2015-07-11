@@ -1,4 +1,4 @@
-  <%= form_for @comment, :html => { :class => "answer-comment-form", :id => "answer-comment-" + answer.id.to_s } do |f| %>
+  <%= form_for @comment, :html => { :class => "answer-comment-form", :id => "answer-comment-" + answer.id.to_s, style:"display:none;" } do |f| %>
     <%= f.text_area :body, size: "100x5" %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :commentable_type, value: "Answer" %>

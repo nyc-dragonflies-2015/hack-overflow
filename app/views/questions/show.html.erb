@@ -22,7 +22,7 @@
     <div class = "render-question-answer">
       <%= render 'answer', answer: answer %>
     </div>
-    <button id="answer-comment-button">Add Comment</button>
+    <button id="answer-comment-button-<%= answer.id %>" >Add Comment</button>
     <%= render partial: "/comments/answer_comment", locals: { answer: answer } %>
     <% answer.comments.all.each do |comment| %>
       <%= render 'comment', comment: comment %>

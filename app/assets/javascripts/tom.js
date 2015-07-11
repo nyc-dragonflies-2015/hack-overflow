@@ -64,7 +64,6 @@ $(document).ready(function() {
     var target = $(e.target);
     var data = target.serialize();
     var body = target.find('#comment_body').val();
-    var answerId = target.attr('id');
     var userId = target.find('#comment_commentable_id').val();
     var commentable_type = target.find('#comment_commentable_type').val();
     var commentable_id = target.find('#comment_commentable_id').val();
@@ -79,8 +78,8 @@ $(document).ready(function() {
       var partial = ""
       partial += "<p>" + body + "<p>";
       partial += "<p>" + username + "<p>";
-      $('#answer-comment-' + data.comment.commentable_id.toString()).before(partial);
-      $('.answer-comment-form').toggle();
+      $('#answer-comment-' + data.comment.commentable_id.toString()).after(partial).toggle();
+      // TOM SAVE US SOMETHING WRONG WITH CLEARING THE FIELD
       $('#comment_body').val('');
     }).fail(function(err) {
       console.log(err);
