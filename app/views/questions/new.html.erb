@@ -1,11 +1,9 @@
-<h1>NEW QUESTION</h1>
-
-<%= form_for @question do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :body %>
-  <%= f.text_field :body%>
-  <%= f.hidden_field :view_count, value: 0%>
-  <%= f.hidden_field :user_id, value: session[:user_id] %>
-  <%= f.submit "Create" %>
-<% end %>
+<div class="size-2">
+  <%= bootstrap_form_for @question do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_area :body, size: "100x5"%>
+    <%= f.hidden_field :view_count, value: 0%>
+    <%= f.hidden_field :user_id, value: session[:user_id] %>
+    <%= f.submit "Create" %>
+  <% end %>
+</div>

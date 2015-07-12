@@ -12,8 +12,10 @@
     <ul>
       <li><%= link_to 'Home', root_path %></li>
       <% if is_authenticated? %>
-        <li class = "move-right"><%= link_to 'Logout', logout_path, method: 'delete' %></li>
+        <li>Logged in as: <%= current_user.username%></li>
+        <li><%= link_to 'Add New Question', new_question_path%></li>
         <li><%= link_to 'Edit Account', edit_user_path(current_user.id)%></li>
+        <li class = "move-right"><%= link_to 'Logout', logout_path, method: 'delete' %></li>
       <%else%>
         <li class = "move-right"><%= link_to 'Sign-Up', new_user_path %></li>
       <%end%>

@@ -2,13 +2,16 @@
   <div class="container">
     <div class="row">
       <div class ="col-md-9 question-index">
+          <h2>Active Questions :</h2>
         <div class = "question-spacing"><% @questions.each do |question| %>
           <div class = "enlarge"><%= link_to question.title, question_path(question.id)%></div>
-          <div><%= question.user.username%></div>
-          <div>Views: <%= question.view_count%></div>
-          <div>Answers: <%= question.answers.count%></div>
-          <div>Votes: <% question.votes.count%></div>
-          <hr>
+          <ul id ="question-info">
+            <li><%= question.user.username%></li> |
+            <li>Views: <%= question.view_count%></li> |
+            <li>Answers: <%= question.answers.count%></li> |
+            <li>Votes: <% question.votes.count%></li>
+            <hr class = "thickness">
+        </ul>
         <%end%></div>
       </div>
       <div class ="col-md-3">
@@ -16,13 +19,15 @@
            <p id = "site-info">
             Welcome to HackOverflow.  Please feel free to view any of our posted questions to help increase your technical knowledge.  If you would like to comment or answer a question or post a new question to the site, please create an account or login below if you are an existing member.  Thanks for visiting!
            </p>
-        <%= bootstrap_form_for @user, url: create_session_path do |f| %>
-          <div class="form-group">
-            <%= f.text_field :username %></div>
-            <%= f.password_field :password %></div>
+           <% if !is_authenticated? %>
+           <%= bootstrap_form_for @user, url: create_session_path do |f| %>
+           <div class="form-group">
+            <%= f.text_field :username %>
+            <%= f.password_field :password %>
             <%= f.submit "Login" %>
-          </div>
+           </div>
         </div>
+          <% end %>
         <% end %>
       </div>
     </div>
