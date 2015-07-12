@@ -1,3 +1,9 @@
+.answer-partial {
+  font-size: 16px;
+  background-color: #787878;
+  color: white;
+}
+
 .comment-partial {
   font-size: 16px;
   padding:10px;
