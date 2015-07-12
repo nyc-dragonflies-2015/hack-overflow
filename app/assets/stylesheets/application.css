@@ -1,3 +1,13 @@
+.thickness {
+  border: 1px solid white;
+}
+
+h2 {
+  text-decoration: underline;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
 body {
   background-color: lightgray;
 }
@@ -21,7 +31,7 @@ body {
 
 h1 {
   font-family: courier;
-  font-size: 40px;
+  font-size: 50px;
   background-color: lightgray;
   margin-top: -20px;
   padding: 15px;

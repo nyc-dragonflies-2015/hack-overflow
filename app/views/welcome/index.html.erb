@@ -2,13 +2,16 @@
   <div class="container">
     <div class="row">
       <div class ="col-md-9 question-index">
+          <h2>Active Questions :</h2>
         <div class = "question-spacing"><% @questions.each do |question| %>
           <div class = "enlarge"><%= link_to question.title, question_path(question.id)%></div>
-          <div><%= question.user.username%></div>
-          <div>Views: <%= question.view_count%></div>
-          <div>Answers: <%= question.answers.count%></div>
-          <div>Votes: <% question.votes.count%></div>
-          <hr>
+          <ul>
+            <li><%= question.user.username%></li> |
+            <li>Views: <%= question.view_count%></li> |
+            <li>Answers: <%= question.answers.count%></li> |
+            <li>Votes: <% question.votes.count%></li>
+            <hr class = "thickness">
+        </ul>
         <%end%></div>
       </div>
       <div class ="col-md-3">
