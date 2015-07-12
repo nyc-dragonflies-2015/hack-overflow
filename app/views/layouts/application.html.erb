@@ -9,15 +9,18 @@
 </head>
 <body>
   <nav class="navbar navbar-default">
-
-  <% if is_authenticated? %>
-    <%= link_to 'Logout', logout_path, method: 'delete' %>
-    <%= link_to 'Edit Your Account', edit_user_path(current_user.id)%>
-  <%else%>
-    <%= link_to 'Sign-Up', new_user_path %>
-  <%end%>
-
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+      <% if is_authenticated? %>
+        <li class = "move-right"><%= link_to 'Logout', logout_path, method: 'delete' %></li>
+        <li><%= link_to 'Edit Account', edit_user_path(current_user.id)%></li>
+      <%else%>
+        <li class = "move-right"><%= link_to 'Sign-Up', new_user_path %></li>
+      <%end%>
+  </ul>
 </nav>
+
+  <h1><img id ="icon" src = "http://sstatic.net/stackoverflow/img/apple-touch-icon.png"/>Hack<span>OverFlow</span></h1>
 
 <%= yield %>
 
