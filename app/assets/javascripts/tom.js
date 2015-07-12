@@ -86,6 +86,7 @@ $(document).ready(function() {
     })
   });
 
+
   $('.enlarge').mouseover(function() {
     $(this).animate({ fontSize : '22px' });
   }),
@@ -93,4 +94,53 @@ $(document).ready(function() {
   $('.enlarge').mouseleave(function() {
     $(this).animate({ fontSize : '20px' });
   });
+
+$('#up-vote').on('submit', function(event) {
+     event.preventDefault();
+     var target = $(event.target);
+     var data = target.serialize();
+     var userId = target.find('#vote_user_id').val();
+     var value = target.find('#vote_value').val();
+     var voteableType = target.find('#vote_voteable_type').val();
+     var voteableId = target.find('#vote_voteable_id').val();
+
+     $.ajax({
+       url: '/votes',
+       method: 'post',
+       data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
+       dataType:"json"
+     }).done(function(data) {
+      var currentCount = parseInt($("#vote-count-span").text());
+      var updatedCount = currentCount += 1;
+      $('#vote-count-span').text(updatedCount.toString());
+     }).fail(function(err) {
+      console.log(err);
+     })
+
+   });
+
+  $('#down-vote').on('submit', function(event) {
+     event.preventDefault();
+     var target = $(event.target);
+     var data = target.serialize();
+     var userId = target.find('#vote_user_id').val();
+     var value = target.find('#vote_value').val();
+     var voteableType = target.find('#vote_voteable_type').val();
+     var voteableId = target.find('#vote_voteable_id').val();
+     $.ajax({
+       url: '/votes',
+       method: 'post',
+       data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
+       dataType:"json"
+     }).done(function(data) {
+      var currentCount = parseInt($("#vote-count-span").text());
+      var updatedCount = currentCount -= 1;
+        $('#vote-count-span').text(updatedCount.toString());
+     }).fail(function(err) {
+      console.log(err);
+     })
+
+   });
+
+
 });
