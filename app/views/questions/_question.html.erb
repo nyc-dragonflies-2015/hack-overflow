@@ -2,7 +2,7 @@
   <h2>Title: <%=@question.title%></h2>
   <p>User: <%=@question.user.username%></p>
   <p>Views: <%=@question.view_count%></p>
-  <p>Created at: <%=@question.created_at%></p>
-  <p>Updated at:<%=@question.updated_at%></p>
+  <p>Created: <%= time_ago_in_words(@question.created_at)%> ago</p>
+  <p>Updated: <%= time_ago_in_words(@question.updated_at)%> ago </p>
   <p><%=@question.body%></p>
 </div>
