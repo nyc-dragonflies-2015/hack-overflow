@@ -8,14 +8,14 @@ class VotesController < ApplicationController
     @vote = Vote.new(vote_params)
     @vote.user_id = current_user.id
       if @vote.voteable_type == 'Question'
-        @question = Question.find(@vote.voteable_id)
+        @data = Question.find(@vote.voteable_id)
       elsif @vote.voteable_type == 'Answer'
-        @answer = Answer.find(@vote.voteable_id)
+        @data = Answer.find(@vote.voteable_id)
       elsif @vote.voteable_type == 'Comment'
-        @comment = Comment.find(@vote.voteable_id)
+        @data = Comment.find(@vote.voteable_id)
       end
       if @vote.save
-        render json: @vote.to_json
+        render json: @data.votes.pluck(:value).reduce(:+).to_json
       else
        ## redirect
       end

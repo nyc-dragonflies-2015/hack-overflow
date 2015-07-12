@@ -1,11 +1,14 @@
 $(document).ready(function() {
 
+
+  // display hidden forms
   $('button').on('click', function(event) {
     event.preventDefault();
     var buttonData = $(event.target);
     buttonData.next().toggle();
   });
 
+  // AJAX call to create an answer and display it
   $('#new_answer').on('submit', function(e){
     e.preventDefault();
     var target = $(e.target);
@@ -32,6 +35,7 @@ $(document).ready(function() {
     })
   });
 
+  // AJAX call to create a comment and display it
   $('#new_comment').on('submit', function(e){
     e.preventDefault();
     var target = $(e.target);
@@ -59,6 +63,7 @@ $(document).ready(function() {
     })
   });
 
+  // AJAX call to comment on an answer and display in the DOM
   $('.answer-comment-form').on('submit', function(e){
     e.preventDefault();
     var target = $(e.target);
@@ -95,10 +100,14 @@ $(document).ready(function() {
     $(this).animate({ fontSize : '20px' });
   });
 
+
+// VOTING
+// upvote on a question
+
 $('#up-vote').on('submit', function(event) {
      event.preventDefault();
      var target = $(event.target);
-     var data = target.serialize();
+     // var data = target.serialize();
      var userId = target.find('#vote_user_id').val();
      var value = target.find('#vote_value').val();
      var voteableType = target.find('#vote_voteable_type').val();
@@ -110,15 +119,15 @@ $('#up-vote').on('submit', function(event) {
        data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
        dataType:"json"
      }).done(function(data) {
-      var currentCount = parseInt($("#vote-count-span").text());
-      var updatedCount = currentCount += 1;
-      $('#vote-count-span').text(updatedCount.toString());
+      $('#vote-count-span').text(data);
+      console.log(data);
      }).fail(function(err) {
       console.log(err);
      })
 
    });
 
+  // downvote on a question
   $('#down-vote').on('submit', function(event) {
      event.preventDefault();
      var target = $(event.target);
@@ -133,18 +142,14 @@ $('#up-vote').on('submit', function(event) {
        data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
        dataType:"json"
      }).done(function(data) {
-      var currentCount = parseInt($("#vote-count-span").text());
-      var updatedCount = currentCount -= 1;
-        $('#vote-count-span').text(updatedCount.toString());
+        $('#vote-count-span').text(data);
      }).fail(function(err) {
       console.log(err);
      })
-
    });
 
-//answers votes ajax
-
-$('#up-vote-answer').on('submit', function(event) {
+//upvote on an answer
+$(".up-vote-answer").on('submit', function(event) {
      event.preventDefault();
      var target = $(event.target);
      var data = target.serialize();
@@ -158,7 +163,6 @@ $('#up-vote-answer').on('submit', function(event) {
        data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
        dataType:"json"
      }).done(function(data) {
-      console.log("done")
       var currentCount = parseInt($("#vote-count-answer-span").text());
       var updatedCount = currentCount += 1;
       $("#vote-count-answer-span").text(updatedCount.toString());
@@ -168,7 +172,8 @@ $('#up-vote-answer').on('submit', function(event) {
 
    });
 
-  $('#down-vote-answer').on('submit', function(event) {
+  // downvote on an answer
+  $('.down-vote-answer').on('submit', function(event) {
      event.preventDefault();
      var target = $(event.target);
      var data = target.serialize();
@@ -188,7 +193,6 @@ $('#up-vote-answer').on('submit', function(event) {
      }).fail(function(err) {
       console.log(err);
      })
-
    });
 
 });
