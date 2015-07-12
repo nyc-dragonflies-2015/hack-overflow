@@ -16,13 +16,15 @@
            <p id = "site-info">
             Welcome to HackOverflow.  Please feel free to view any of our posted questions to help increase your technical knowledge.  If you would like to comment or answer a question or post a new question to the site, please create an account or login below if you are an existing member.  Thanks for visiting!
            </p>
-        <%= bootstrap_form_for @user, url: create_session_path do |f| %>
-          <div class="form-group">
-            <%= f.text_field :username %></div>
-            <%= f.password_field :password %></div>
+           <% if !is_authenticated? %>
+           <%= bootstrap_form_for @user, url: create_session_path do |f| %>
+           <div class="form-group">
+            <%= f.text_field :username %>
+            <%= f.password_field :password %>
             <%= f.submit "Login" %>
-          </div>
+           </div>
         </div>
+          <% end %>
         <% end %>
       </div>
     </div>
