@@ -38,10 +38,8 @@ feature 'question#show' do
     visit '/questions/' + id.to_s
     find('#answer-button').click
     find('#answer_body', :visible => false).set("This is my answer")
-    save_and_open_page
     find('#answer-submit', :visible => false).click
     visit '/questions/' + id.to_s
-    save_and_open_page
     expect(page).to have_content 'This is my answer'
   end
 
@@ -57,7 +55,6 @@ feature 'question#show' do
     find('.answer-comment-form #comment_body', :visible => false).set("Nice answer!")
     find('.answer-comment-form input[type=submit]', :visible => false).click
     visit '/questions/' + id.to_s
-    save_and_open_page
     expect(page).to have_content 'Nice answer!'
   end
 end
