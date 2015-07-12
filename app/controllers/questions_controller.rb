@@ -10,6 +10,9 @@ class QuestionsController < ApplicationController
     @answer = Answer.new
     @answers = @question.answers.all.order("created_at DESC")
     @question_comments = @question.comments.all.order("created_at DESC")
+    @vote = Vote.new #add for votes
+    @vote_count = @question.votes.pluck(:value).reduce(:+) || 0
+
   end
 
   def new
