@@ -26,8 +26,10 @@ $(document).ready(function() {
       var body = data.answer.body
       var username = data.username
       var partial = ""
-      partial += "<p>" + body + "<p>";
-      partial += "<p>" + username + "<p>";
+      partial += '<div class= "answer-partial" id = "question-info" <p>' + body + "</p>";
+      partial += "<p>" + username + "</p>";
+      partial += '<p>Answer Vote count: <span id="vote-count-answer-span">0</span></p>';
+
       $('.answer_form').after(partial).toggle();
       $('#answer_body').val('');
     }).fail(function(err) {
@@ -53,8 +55,8 @@ $(document).ready(function() {
       var body = data.comment.body
       var username = data.username
       var partial = ""
-      partial += "<p>" + body + "<p>";
-      partial += "<p>" + username + "<p>";
+      partial += '<div class="comment-partial"><p class="wrap">' + body + "</p>";
+      partial += "<p>" + username + "</p></div>";
       $('#question-comment-button').before(partial);
       $('.question-comment-form').toggle();
       $('#comment_body').val('');
@@ -81,8 +83,8 @@ $(document).ready(function() {
       var body = data.comment.body
       var username = data.username
       var partial = ""
-      partial += "<p>" + body + "<p>";
-      partial += "<p>" + username + "<p>";
+      partial += '<div class="comment-partial"><p class="wrap">' + body + "</p>";
+      partial += "<p>" + username + "</p></div>";
       $('#answer-comment-' + data.comment.commentable_id.toString()).after(partial).toggle();
       // TOM SAVE US SOMETHING WRONG WITH CLEARING THE FIELD
       $('#comment_body').val('');
@@ -93,7 +95,7 @@ $(document).ready(function() {
 
 
   $('.enlarge').mouseover(function() {
-    $(this).animate({ fontSize : '22px' });
+    $(this).animate({ fontSize : '20.5px' });
   }),
 
   $('.enlarge').mouseleave(function() {
