@@ -8,6 +8,8 @@ class QuestionsController < ApplicationController
     @answers = @question.answers.all
     @comment = Comment.new
     @answer = Answer.new
+    @answers = @question.answers.all.order("created_at DESC")
+    @question_comments = @question.comments.all.order("created_at DESC")
   end
 
   def new
@@ -33,21 +35,21 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-    p @question
     @question.assign_attributes(question_params)
     if @question.save
-      binding.pry
       redirect_to @question
     else
-      redirect_to :back
+      flash[:alert] = @question.errors.full_messages
+      render :edit
     end
   end
 
   def destroy
     @question = Question.find(params[:id])
-    authenticate_user!(@question.user_id)
-    @question.destroy
-    flash[:notice] = "Question has been deleted"
+    if current_user && session[:user_id] == current_user.id
+      @question.destroy
+      flash[:notice] = "Question has been deleted"
+    end
     redirect_to root_path
   end
 

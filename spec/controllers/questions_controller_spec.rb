@@ -58,39 +58,50 @@ describe QuestionsController do
       question = FactoryGirl.create(:question, user_id: user.id, body: "Hello")
       id = question.id
       session[:user_id] = user.id
-      post :update, id: question.id, question: FactoryGirl.attributes_for(:question, user_id: user.id)
+      put :update, id: question.id, question: FactoryGirl.attributes_for(:question, user_id: user.id)
       expect(Question.find(id).body).to_not eq("Hello")
     end
 
     it 'should render the proper error messages if the params are not valid' do
+      user = FactoryGirl.create(:user)
+      question = FactoryGirl.create(:question, user_id: user.id)
+      session[:user_id] = user.id
+      put :update, id: question.id, question: FactoryGirl.attributes_for(:question, body: nil)
+      expect(flash[:alert]).to eq(["Body can't be blank"])
     end
   end
 
   context '#destroy' do
     it 'should delete the question from the database if the current user is the author of the question' do
+      user = FactoryGirl.create(:user)
+      question = FactoryGirl.create(:question, user_id: user.id)
+      session[:user_id] = user.id
+      delete :destroy, id: question.id
+      expect(response).to redirect_to root_path
+      expect(Question.find_by(id: question.id)).to eq(nil)
     end
 
     it 'should not allow an unauthorized user to delete the question' do
+      user = FactoryGirl.create(:user)
+      question = FactoryGirl.create(:question, user_id: user.id)
+      session[:user_id] = nil
+      delete :destroy, id: question.id
+      expect(Question.find_by(id: question.id)).to_not eq(nil)
     end
   end
 
   context '#show' do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:question) { FactoryGirl.create(:question, user_id: user.id) }
     it 'should display the question along with its answers' do
+      get :show, id: question.id
+      expect(assigns(:question)).to be_a Question
+      expect(assigns(:answers)).to be_a ActiveRecord::AssociationRelation
     end
 
     it 'should display the comments for the question' do
-    end
-
-    it 'should display the comments for each answer' do
-    end
-
-    it 'should allow the signed in user to vote for the question' do
-    end
-
-    it 'should allow the signed in user to vote for an answer' do
-    end
-
-    it 'should allow the signed in user to vote for a comment' do
+      get :show, id: question.id
+      expect(assigns(:question_comments)).to be_a ActiveRecord::AssociationRelation
     end
   end
 end
