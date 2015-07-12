@@ -7,9 +7,10 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: user_params[:username])
     if @user && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
+      flash[:notice] = ["Signed in successfully."]
       redirect_to root_path
     else
-      flash[:alert] = @user.errors
+      flash[:alert] = ["There was an error with your login request."]
       redirect_to :back
     end
   end
