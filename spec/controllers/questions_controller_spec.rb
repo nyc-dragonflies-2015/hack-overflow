@@ -3,6 +3,8 @@ require 'rails_helper'
 describe QuestionsController do
   context '#new' do
     it 'should render a form to create a new question' do
+      user = FactoryGirl.create(:user)
+      session[:user_id] = user.id
       get :new
       expect(assigns(:question)).to be_a Question
     end
