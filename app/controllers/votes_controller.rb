@@ -5,6 +5,11 @@ class VotesController < ApplicationController
   end
 
   def create
+    @old_vote = Vote.find_by(user_id: current_user.id, voteable_id: vote_params["voteable_id"], voteable_type: vote_params["voteable_type"])
+    if @old_vote && @old_vote.value != vote_params["value"]
+      @old_vote.destroy
+    end
+
     @vote = Vote.new(vote_params)
     @vote.user_id = current_user.id
       if @vote.voteable_type == 'Question'
@@ -17,7 +22,7 @@ class VotesController < ApplicationController
       if @vote.save
         render json: @data.votes.pluck(:value).reduce(:+).to_json
       else
-       ## redirect
+       redirect_to root_path
       end
   end
 
@@ -42,5 +47,7 @@ class VotesController < ApplicationController
     def vote_params
       params.require(:vote).permit(:value, :user_id, :voteable_type, :voteable_id)
     end
+
+
 
 end

@@ -7,4 +7,6 @@ class Vote < ActiveRecord::Base
   validates :user, presence: true
   validates :voteable, presence: true
 
+  validates_uniqueness_of :user_id, :scope => [:voteable_id, :voteable_type, :value]
+
 end
