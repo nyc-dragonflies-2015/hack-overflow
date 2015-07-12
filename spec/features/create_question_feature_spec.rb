@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-def login(id)
+def login(id) ## helper method to avoid duplicate accounts in running tests
   visit root_path
   click_link 'Sign-Up'
   fill_in 'Username', :with => "Bill#{id}"
