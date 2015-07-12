@@ -4,7 +4,7 @@
     <div class ="col-md-12">
       <%= render 'question', question: @question %>
 
-      <h6 id="q-comment">Comments</h6>
+      <h4 id="q-comment">Comments</h4>
 
       <% @question.comments.each do |comment| %>
         <%= render 'comment', comment: comment %>
@@ -15,7 +15,7 @@
 
       <hr/>
 
-      <h3>Answers</h3>
+      <h2>Answers</h2>
 
       <button id="answer-button" class="btn btn-default">Add Answer</button>
       <%= render partial: "/answers/answer_form" %>

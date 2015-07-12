@@ -1,3 +1,41 @@
+.comment-partial {
+  font-size: 16px;
+  padding:10px;
+  background-color: #787878;
+  color: white;
+}
+
+.wrap {
+  background-color: #888888;
+  padding: 5px;
+}
+
+.question-partial {
+  font-size: 16px;
+  padding: 20px;
+}
+
+.body-style {
+  background-color: #888888 ;
+  padding: 10px;
+  font-size: 16px;
+  margin: 15px;
+}
+
+.center {
+  text-align: center;
+}
+
+.votes {
+  width: 200px;
+  font-weight: bold;
+  padding-top 5px;
+}
+
+.move-left {
+  float: left;
+}
+
 .thickness {
   border: 1px solid white;
 }
