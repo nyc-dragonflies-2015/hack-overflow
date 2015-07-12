@@ -1,0 +1,20 @@
+<div class="up-vote">
+  <%= form_for @vote, html:{id:"up-vote"} do |f| %>
+    <%= f.hidden_field :voteable_type, value: "Question" %>
+    <%= f.hidden_field :voteable_id, value: @question.id %>
+    <%= f.hidden_field :user_id, value: current_user.id%>
+    <%= f.hidden_field :value, value: 1%>
+    <%= f.submit 'up' %>
+
+  <% end %>
+</div
+
+<div class="down-vote">
+  <%= form_for @vote, html:{id:"down-vote"} do |f| %>
+    <%= f.hidden_field :voteable_type, value: "Question" %>
+    <%= f.hidden_field :voteable_id, value: @question.id %>
+    <%= f.hidden_field :user_id, value: current_user.id%>
+    <%= f.hidden_field :value, value: -1%>
+    <%= f.submit 'down' %>
+  <% end %>
+</div>

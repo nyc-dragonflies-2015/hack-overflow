@@ -17,9 +17,9 @@
 <button id="answer-button">Add Answer</button>
 <%= render partial: "/answers/answer_form" %>
 
-  <% @answers.each do |answer| %>
+  <% @answers.each_with_index do |answer, index| %>
     <div class = "render-question-answer">
-      <%= render 'answer', answer: answer %>
+      <%= render 'answer', answer: answer, index: index %>
     </div>
     <button id="answer-comment-button-<%= answer.id %>" >Add Comment</button>
     <%= render partial: "/comments/answer_comment", locals: { answer: answer } %>

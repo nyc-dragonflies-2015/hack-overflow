@@ -1,19 +1,21 @@
 class VotesController < ApplicationController
 
+  def new
+    @vote = Vote.new
+  end
+
   def create
     @vote = Vote.new(vote_params)
     @vote.user_id = current_user.id
       if @vote.voteable_type == 'Question'
-        @question = Question.find(@vote.voteable_id)
-                                            #deleted question id lines because votes do not have question ids
+        @data = Question.find(@vote.voteable_id)
       elsif @vote.voteable_type == 'Answer'
-        @answer = Answer.find(@vote.voteable_id)
+        @data = Answer.find(@vote.voteable_id)
       elsif @vote.voteable_type == 'Comment'
-        @comment = Comment.find(@vote.voteable_id)
-                                            #added comments because they can be voted on
+        @data = Comment.find(@vote.voteable_id)
       end
       if @vote.save
-        render json: @vote.to_json
+        render json: @data.votes.pluck(:value).reduce(:+).to_json
       else
        ## redirect
       end

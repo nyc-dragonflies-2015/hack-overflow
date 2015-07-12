@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :answers
   resources :comments
   resources :tags
+  resources :votes
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create', as: 'create_session'

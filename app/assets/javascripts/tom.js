@@ -1,11 +1,14 @@
 $(document).ready(function() {
 
+
+  // display hidden forms
   $('button').on('click', function(event) {
     event.preventDefault();
     var buttonData = $(event.target);
     buttonData.next().toggle();
   });
 
+  // AJAX call to create an answer and display it
   $('#new_answer').on('submit', function(e){
     e.preventDefault();
     var target = $(e.target);
@@ -32,6 +35,7 @@ $(document).ready(function() {
     })
   });
 
+  // AJAX call to create a comment and display it
   $('#new_comment').on('submit', function(e){
     e.preventDefault();
     var target = $(e.target);
@@ -59,6 +63,7 @@ $(document).ready(function() {
     })
   });
 
+  // AJAX call to comment on an answer and display in the DOM
   $('.answer-comment-form').on('submit', function(e){
     e.preventDefault();
     var target = $(e.target);
@@ -86,6 +91,7 @@ $(document).ready(function() {
     })
   });
 
+
   $('.enlarge').mouseover(function() {
     $(this).animate({ fontSize : '22px' });
   }),
@@ -93,4 +99,94 @@ $(document).ready(function() {
   $('.enlarge').mouseleave(function() {
     $(this).animate({ fontSize : '20px' });
   });
+
+
+// VOTING
+// upvote on a question
+
+$('#up-vote').on('submit', function(event) {
+     event.preventDefault();
+     var target = $(event.target);
+     var userId = target.find('#vote_user_id').val();
+     var value = target.find('#vote_value').val();
+     var voteableType = target.find('#vote_voteable_type').val();
+     var voteableId = target.find('#vote_voteable_id').val();
+
+     $.ajax({
+       url: '/votes',
+       method: 'post',
+       data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
+       dataType:"json"
+     }).done(function(data) {
+      $('#vote-count-span').text(data);
+     }).fail(function(err) {
+      console.log(err);
+     })
+
+   });
+
+  // downvote on a question
+  $('#down-vote').on('submit', function(event) {
+     event.preventDefault();
+     var target = $(event.target);
+     var data = target.serialize();
+     var userId = target.find('#vote_user_id').val();
+     var value = target.find('#vote_value').val();
+     var voteableType = target.find('#vote_voteable_type').val();
+     var voteableId = target.find('#vote_voteable_id').val();
+     $.ajax({
+       url: '/votes',
+       method: 'post',
+       data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
+       dataType:"json"
+     }).done(function(data) {
+        $('#vote-count-span').text(data);
+        console.log("QUESTION VOTE");
+     }).fail(function(err) {
+      console.log(err);
+     })
+   });
+
+//upvote on an answer
+$(".up-vote-answer-form").on('submit', function(event) {
+     event.preventDefault();
+     var target = $(event.target);
+     var userId = target.find('#vote_user_id').val();
+     var value = target.find('#vote_value').val();
+     var voteableType = target.find('#vote_voteable_type').val();
+     var voteableId = target.find('#vote_voteable_id').val();
+     $.ajax({
+       url: '/votes',
+       method: 'post',
+       data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
+       dataType:"json"
+     }).done(function(data) {
+      target.parent().parent().children().find('#vote-count-answer-span').html(data);
+     }).fail(function(err) {
+      console.log(err);
+     });
+
+   });
+
+  // downvote on an answer
+  $('.down-vote-answer-form').on('submit', function(event) {
+     event.preventDefault();
+     var target = $(event.target);
+     var data = target.serialize();
+     var userId = target.find('#vote_user_id').val();
+     var value = target.find('#vote_value').val();
+     var voteableType = target.find('#vote_voteable_type').val();
+     var voteableId = target.find('#vote_voteable_id').val();
+     $.ajax({
+       url: '/votes',
+       method: 'post',
+       data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
+       dataType:"json"
+     }).done(function(data) {
+      target.parent().parent().children().find('#vote-count-answer-span').html(data);
+     }).fail(function(err) {
+      console.log(err);
+     })
+   });
+
 });
