@@ -4,6 +4,6 @@
       <%= f.hidden_field :user_id, value: current_user.try(:id) %>
       <%= f.hidden_field :commentable_type, value: "Question" %>
       <%= f.hidden_field :commentable_id, value: @question.id %>
-      <%= f.submit :"Submit", id: "question_comment_submit" %>
+      <%= f.submit :"Submit", id: "question_comment_submit", class: "btn btn-default" %>
     <% end %>
   </div>

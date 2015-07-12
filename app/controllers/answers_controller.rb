@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-
+  before_action :require_logged_in, only: [:new, :create, :update, :destroy]
   def create
     @answer = Answer.new(answer_params)
     @answer.user_id = current_user.id

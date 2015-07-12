@@ -1,4 +1,6 @@
-<p><%=answer.body%> </p>
-<p><%=answer.user.username%></p>
-<p>Answer Vote count: <span id="vote-count-answer-span"><%= answer.votes.pluck(:value).reduce(:+) || 0%> </span></p>
-<%= render partial: "/votes/answer_vote", locals: {answer: answer, index: index} %>
+<div class = "answer-partial" id = "question-info">
+  <p><%=answer.body%> </p>
+  <p><%=answer.user.username%></p>
+  <p>Answer Vote count: <span id="vote-count-answer-span"><%= answer.votes.pluck(:value).reduce(:+) || 0%> </span></p>
+  <%= render partial: "/votes/answer_vote", locals: {answer: answer, index: index} %>
+</div>

@@ -9,7 +9,7 @@
             <li><%= question.user.username%></li> |
             <li>Views: <%= question.view_count%></li> |
             <li>Answers: <%= question.answers.count%></li> |
-            <li>Votes: <% question.votes.count%></li>
+            <li>Votes: <%= question.votes.pluck(:value).reduce(:+) || 0%></li>
             <hr class = "thickness">
         </ul>
         <%end%></div>

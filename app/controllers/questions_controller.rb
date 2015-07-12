@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :require_logged_in, only: [:new, :create, :update, :destroy]
   def index
     @question = Question.all
   end
@@ -10,9 +11,9 @@ class QuestionsController < ApplicationController
     @answer = Answer.new
     @answers = @question.answers.all.order("created_at DESC")
     @question_comments = @question.comments.all.order("created_at DESC")
+    @question.increment!(:view_count)
     @vote = Vote.new #add for votes
     @vote_count = @question.votes.pluck(:value).reduce(:+) || 0
-
   end
 
   def new
