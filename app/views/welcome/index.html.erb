@@ -1,17 +1,30 @@
-<h1>Site Name to be Announced</h1>
-
-<%= form_for @user, url: create_session_path do |f| %>
-  <div><%= f.label :username %>
-  <%= f.text_field :username %></div>
-  <div><%= f.label :password %>
-  <%= f.password_field :password %></div>
-  <%= f.submit "Login" %>
-<% end %>
-
-<% @questions.each do |question| %>
-  <div><%= link_to question.title, question_path(question.id)%></div>
-  <div><%= question.user.username%>
-  <div><%= question.view_count%>
-  <br>
-  <br>
-<%end%>
+<div id = "index-body">
+  <div class="container">
+    <div class="row">
+      <div class ="col-md-9 question-index">
+        <div class = "question-spacing"><% @questions.each do |question| %>
+          <div class = "enlarge"><%= link_to question.title, question_path(question.id)%></div>
+          <div><%= question.user.username%></div>
+          <div>Views: <%= question.view_count%></div>
+          <div>Answers: <%= question.answers.count%></div>
+          <div>Votes: <% question.votes.count%></div>
+          <hr>
+        <%end%></div>
+      </div>
+      <div class ="col-md-3">
+        <div class="size">
+           <p id = "site-info">
+            Welcome to HackOverflow.  Please feel free to view any of our posted questions to help increase your technical knowledge.  If you would like to comment or answer a question or post a new question to the site, please create an account or login below if you are an existing member.  Thanks for visiting!
+           </p>
+        <%= bootstrap_form_for @user, url: create_session_path do |f| %>
+          <div class="form-group">
+            <%= f.text_field :username %></div>
+            <%= f.password_field :password %></div>
+            <%= f.submit "Login" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
