@@ -9,12 +9,7 @@ class AnswersController < ApplicationController
       render json: data.to_json
     else
       render json: {error: "Didn't work"}.to_json
-    @answer.user_id = answer_params["user_id"] || current_user.id
-    if @answer.save
-      render json: @answer.to_json
-    else
-      flash[:alert] = @answer.errors.full_messages
-      redirect_to :back
+      @answer.user_id = answer_params["user_id"] || current_user.id
     end
   end
 
