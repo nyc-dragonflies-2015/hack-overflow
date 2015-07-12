@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
     if @comment.save
       render json: data.to_json
     else
+      flash[:alert] = @comment.errors.full_messages
       redirect_to :back
     end
   end
