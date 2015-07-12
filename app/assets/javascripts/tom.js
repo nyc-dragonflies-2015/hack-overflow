@@ -119,7 +119,6 @@ $('#up-vote').on('submit', function(event) {
        dataType:"json"
      }).done(function(data) {
       $('#vote-count-span').text(data);
-      console.log("QUESTION VOTE");
      }).fail(function(err) {
       console.log(err);
      })

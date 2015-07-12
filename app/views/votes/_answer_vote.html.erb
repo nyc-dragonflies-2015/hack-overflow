@@ -1,5 +1,5 @@
 <div class="up-vote-answer">
-  <%= form_for @vote, html:{class: "up-vote-answer-form", id:"up-vote-answer-" + index.to_s} do |f| %>
+  <%= form_for @vote, html:{class: "up-vote-answer-form", id:"up-vote-answer-" + answer.id.to_s} do |f| %>
     <%= f.hidden_field :voteable_type, value: "Answer" %>
     <%= f.hidden_field :voteable_id, value: answer.id %>
     <%= f.hidden_field :user_id, value: current_user.id%>
