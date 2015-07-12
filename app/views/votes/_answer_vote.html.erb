@@ -1,5 +1,5 @@
 <div class="up-vote-answer">
-  <%= form_for @vote, html:{class:"up-vote-answer"} do |f| %>
+  <%= form_for @vote, html:{class: "up-vote-answer-form", id:"up-vote-answer-" + index.to_s} do |f| %>
     <%= f.hidden_field :voteable_type, value: "Answer" %>
     <%= f.hidden_field :voteable_id, value: answer.id %>
     <%= f.hidden_field :user_id, value: current_user.id%>
@@ -9,8 +9,8 @@
   <% end %>
 </div>
 
-<div class="down-vote-answer">
-  <%= form_for @vote, html:{class:"down-vote-answer-" + answer.id.to_s} do |f| %>
+<div id="down-vote-answer">
+  <%= form_for @vote, html:{class: 'down-vote-answer-form', id:"down-vote-answer-" + answer.id.to_s} do |f| %>
     <%= f.hidden_field :voteable_type, value: "Answer" %>
     <%= f.hidden_field :voteable_id, value: answer.id%>
     <%= f.hidden_field :user_id, value: current_user.id%>

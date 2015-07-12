@@ -107,7 +107,6 @@ $(document).ready(function() {
 $('#up-vote').on('submit', function(event) {
      event.preventDefault();
      var target = $(event.target);
-     // var data = target.serialize();
      var userId = target.find('#vote_user_id').val();
      var value = target.find('#vote_value').val();
      var voteableType = target.find('#vote_voteable_type').val();
@@ -120,7 +119,7 @@ $('#up-vote').on('submit', function(event) {
        dataType:"json"
      }).done(function(data) {
       $('#vote-count-span').text(data);
-      console.log(data);
+      console.log("QUESTION VOTE");
      }).fail(function(err) {
       console.log(err);
      })
@@ -143,16 +142,16 @@ $('#up-vote').on('submit', function(event) {
        dataType:"json"
      }).done(function(data) {
         $('#vote-count-span').text(data);
+        console.log("QUESTION VOTE");
      }).fail(function(err) {
       console.log(err);
      })
    });
 
 //upvote on an answer
-$(".up-vote-answer").on('submit', function(event) {
+$(".up-vote-answer-form").on('submit', function(event) {
      event.preventDefault();
      var target = $(event.target);
-     var data = target.serialize();
      var userId = target.find('#vote_user_id').val();
      var value = target.find('#vote_value').val();
      var voteableType = target.find('#vote_voteable_type').val();
@@ -163,17 +162,15 @@ $(".up-vote-answer").on('submit', function(event) {
        data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
        dataType:"json"
      }).done(function(data) {
-      var currentCount = parseInt($("#vote-count-answer-span").text());
-      var updatedCount = currentCount += 1;
-      $("#vote-count-answer-span").text(updatedCount.toString());
+      target.parent().parent().children().find('#vote-count-answer-span').html(data);
      }).fail(function(err) {
       console.log(err);
-     })
+     });
 
    });
 
   // downvote on an answer
-  $('.down-vote-answer').on('submit', function(event) {
+  $('.down-vote-answer-form').on('submit', function(event) {
      event.preventDefault();
      var target = $(event.target);
      var data = target.serialize();
@@ -187,9 +184,7 @@ $(".up-vote-answer").on('submit', function(event) {
        data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
        dataType:"json"
      }).done(function(data) {
-      var currentCount = parseInt($("#vote-count-answer-span").text());
-      var updatedCount = currentCount -= 1;
-        $("#vote-count-answer-span").text(updatedCount.toString());
+      target.parent().parent().children().find('#vote-count-answer-span').html(data);
      }).fail(function(err) {
       console.log(err);
      })
