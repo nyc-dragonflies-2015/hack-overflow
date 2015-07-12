@@ -87,7 +87,7 @@ $(document).ready(function() {
   });
 
   $('.enlarge').mouseover(function() {
-    $(this).animate({ fontSize : '26px' });
+    $(this).animate({ fontSize : '22px' });
   }),
 
   $('.enlarge').mouseleave(function() {
