@@ -9,7 +9,6 @@ class VotesController < ApplicationController
     if @old_vote && @old_vote.value != vote_params["value"]
       @old_vote.destroy
     end
-
     @vote = Vote.new(vote_params)
     @vote.user_id = current_user.id
       if @vote.voteable_type == 'Question'
@@ -44,10 +43,14 @@ class VotesController < ApplicationController
 
   private
 
+<<<<<<< HEAD
+  def vote_params
+    params.require(:vote).permit(:value, :user_id, :voteable_type, :voteable_id)
+  end
+=======
     def vote_params
       params.require(:vote).permit(:value, :user_id, :voteable_type, :voteable_id)
     end
 
-
-
+>>>>>>> 33d543b2dc57c4eee1dec50841e3f216d3e35b76
 end
