@@ -1,3 +1,80 @@
+.move-right {
+  float: right;
+  padding-right: 50px;
+}
+
+#site-info {
+  font-size: 18px;
+  border: 3px solid black;
+  padding: 10px;
+}
+
+h1 {
+  font-family: courier;
+  font-size: 40px;
+  background-color: lightgray;
+  margin-top: -20px;
+  padding: 15px;
+}
+
+span {
+  font-weight: bold;
+}
+
+#icon {
+  width: 60px;
+  height: 60px;
+}
+
+#index-body {
+  background-color: lightgray;
+  margin-top: -20px;
+}
+
+.size {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.login {
+  background-color: blue;
+}
+
+.navbar-default {
+  background-color: black;
+}
+
+li {
+  color: white;
+  list-style: none;
+  display: inline-block;
+  font-size: 18px;
+  padding: 10px;
+  padding-top: 15px;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  background-color: white;
+  text-decoration: none;
+}
+
+.question-index {
+  background-color: gray;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+}
+
+.question-spacing {
+  padding: 10px;
+  margin-top: 2%;
+}
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -12,4 +89,5 @@
  *
  *= require_tree .
  *= require_self
+ *= require rails_bootstrap_forms
  */
