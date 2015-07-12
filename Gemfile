@@ -26,4 +26,5 @@ group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'launchy'
+  gem 'rack_session_access'
 end
