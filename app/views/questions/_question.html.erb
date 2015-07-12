@@ -4,5 +4,6 @@
   <p>Views: <%=@question.view_count%></p>
   <p>Created: <%= time_ago_in_words(@question.created_at)%> ago</p>
   <p>Updated: <%= time_ago_in_words(@question.updated_at)%> ago </p>
+  <%= render partial: "/votes/new" %>
   <p><%=@question.body%></p>
 </div>
