@@ -9,13 +9,37 @@ class AnswersController < ApplicationController
       render json: data.to_json
     else
       render json: {error: "Didn't work"}.to_json
+    @answer.user_id = answer_params["user_id"] || current_user.id
+    if @answer.save
+      render json: @answer.to_json
+    else
+      flash[:alert] = @answer.errors.full_messages
+      redirect_to :back
     end
+  end
+
+  def update
+    @answer = Answer.find(params[:id])
+    @answer.assign_attributes(answer_params)
+    if @answer.save
+      flash[:notice] = "Answer successfully updated."
+      redirect_to :back
+    else
+      flash[:alert] = @answer.errors.full_messages
+      redirect_to :back
+    end
+  end
+
+  def destroy
+    @answer = Answer.find(params[:id])
+    @answer.destroy
+    flash[:notice] = "Answer successfully deleted."
+    redirect_to :back
   end
 
   private
 
-    def answer_params
-      params.require(:answer).permit(:body, :question_id, :user_id)
-    end
-
+  def answer_params
+    params.require(:answer).permit(:body, :question_id, :user_id)
+  end
 end
