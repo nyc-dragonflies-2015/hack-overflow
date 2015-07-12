@@ -8,6 +8,7 @@ class AnswersController < ApplicationController
       data = {answer: @answer, username: username}
       render json: data.to_json
     else
+      flash[:alert] = @answer.errors.full_messages
       render json: {error: "Didn't work"}.to_json
       @answer.user_id = answer_params["user_id"] || current_user.id
     end
