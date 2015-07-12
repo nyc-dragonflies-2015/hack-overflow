@@ -2,6 +2,6 @@
     <%= form_for @answer do |f| %>
       <%= f.text_area :body, size: "100x10" %>
       <%= f.hidden_field :question_id, value: @question.id %>
-      <%= f.submit :"Submit", id: 'answer-submit' %>
+      <%= f.submit :"Submit", id: 'answer-submit', class: "btn btn-default" %>
     <% end %>
   </div>
