@@ -15,8 +15,10 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
+      flash[:notice] = "Tag successfully saved."
       render json: @tag.to_json
     else
+      flash[:alert] = @tag.errors.full_messages
       render :new
     end
   end
