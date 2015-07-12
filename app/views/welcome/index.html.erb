@@ -5,7 +5,7 @@
           <h2>Active Questions :</h2>
         <div class = "question-spacing"><% @questions.each do |question| %>
           <div class = "enlarge"><%= link_to question.title, question_path(question.id)%></div>
-          <ul>
+          <ul id ="question-info">
             <li><%= question.user.username%></li> |
             <li>Views: <%= question.view_count%></li> |
             <li>Answers: <%= question.answers.count%></li> |
