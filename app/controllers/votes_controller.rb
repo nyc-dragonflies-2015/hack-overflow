@@ -1,6 +1,10 @@
 class VotesController < ApplicationController
 
   def create
+    @old_vote = Vote.find_by(user_id: current_user.id, voteable_id: vote_params["voteable_id"], voteable_type: vote_params["voteable_type"])
+    if @old_vote && @old_vote.value != vote_params["value"]
+      @old_vote.destroy
+    end
     @vote = Vote.new(vote_params)
     @vote.user_id = current_user.id
       if @vote.voteable_type == 'Question'
