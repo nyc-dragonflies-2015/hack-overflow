@@ -142,5 +142,53 @@ $('#up-vote').on('submit', function(event) {
 
    });
 
+//answers votes ajax
+
+$('#up-vote-answer').on('submit', function(event) {
+     event.preventDefault();
+     var target = $(event.target);
+     var data = target.serialize();
+     var userId = target.find('#vote_user_id').val();
+     var value = target.find('#vote_value').val();
+     var voteableType = target.find('#vote_voteable_type').val();
+     var voteableId = target.find('#vote_voteable_id').val();
+     $.ajax({
+       url: '/votes',
+       method: 'post',
+       data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
+       dataType:"json"
+     }).done(function(data) {
+      console.log("done")
+      var currentCount = parseInt($("#vote-count-answer-span").text());
+      var updatedCount = currentCount += 1;
+      $("#vote-count-answer-span").text(updatedCount.toString());
+     }).fail(function(err) {
+      console.log(err);
+     })
+
+   });
+
+  $('#down-vote-answer').on('submit', function(event) {
+     event.preventDefault();
+     var target = $(event.target);
+     var data = target.serialize();
+     var userId = target.find('#vote_user_id').val();
+     var value = target.find('#vote_value').val();
+     var voteableType = target.find('#vote_voteable_type').val();
+     var voteableId = target.find('#vote_voteable_id').val();
+     $.ajax({
+       url: '/votes',
+       method: 'post',
+       data: {vote: {user_id: userId, value: value, voteable_type: voteableType, voteable_id: voteableId}},
+       dataType:"json"
+     }).done(function(data) {
+      var currentCount = parseInt($("#vote-count-answer-span").text());
+      var updatedCount = currentCount -= 1;
+        $("#vote-count-answer-span").text(updatedCount.toString());
+     }).fail(function(err) {
+      console.log(err);
+     })
+
+   });
 
 });
