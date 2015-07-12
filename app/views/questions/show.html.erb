@@ -10,21 +10,21 @@
         <%= render 'comment', comment: comment %>
       <% end %>
 
-      <button id="question-comment-button" class="btn btn-default">Add Comment</button>
+      <button id="question-comment-button" class="btn btn-default button-pad">Add Comment</button>
       <%= render partial: "/comments/question_comment" %>
 
-      <hr/>
+      <hr>
 
       <h2>Answers</h2>
 
-      <button id="answer-button" class="btn btn-default">Add Answer</button>
+      <button id="answer-button" class="btn btn-default button-pad">Add Answer</button>
       <%= render partial: "/answers/answer_form" %>
 
         <% @answers.each_with_index do |answer, index| %>
           <div class = "render-question-answer">
             <%= render 'answer', answer: answer, index: index %>
           </div>
-          <button id="answer-comment-button-<%= answer.id %>" class="btn btn-default" >Add Comment</button>
+          <button id="answer-comment-button-<%= answer.id %>" class="btn btn-default button-pad" >Add Comment</button>
           <%= render partial: "/comments/answer_comment", locals: { answer: answer } %>
           <% answer.comments.all.each do |comment| %>
             <%= render 'comment', comment: comment %>

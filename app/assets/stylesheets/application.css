@@ -2,13 +2,19 @@
   font-size: 16px;
   background-color: #787878;
   color: white;
+  padding: 10px;
 }
 
 .comment-partial {
   font-size: 16px;
   padding:10px;
-  background-color: #787878;
+  background-color: #989898;
   color: white;
+  margin-top: 8px;
+}
+
+.button-pad {
+  margin-top: 8px;
 }
 
 .wrap {
