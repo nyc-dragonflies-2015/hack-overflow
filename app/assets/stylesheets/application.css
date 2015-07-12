@@ -3,7 +3,7 @@
 }
 
 h2 {
-  text-decoration: underline;
+  border-bottom: 2px solid white;
   padding-bottom: 20px;
   font-weight: bold;
 }
