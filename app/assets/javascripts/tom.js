@@ -86,4 +86,11 @@ $(document).ready(function() {
     })
   });
 
+  $('.enlarge').mouseover(function() {
+    $(this).animate({ fontSize : '26px' });
+  }),
+
+  $('.enlarge').mouseleave(function() {
+    $(this).animate({ fontSize : '20px' });
+  });
 });
