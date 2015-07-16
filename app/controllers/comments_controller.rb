@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :require_logged_in, only: [:new, :create, :update, :destroy]
+  # See how I cleaned this up on Wed nite lecture
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id

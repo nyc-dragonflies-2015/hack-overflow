@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # Stunning how concise but powerful this can get, no?
   resources :users
   resources :questions
   resources :answers

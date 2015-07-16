@@ -9,6 +9,8 @@ describe Answer do
     expect(FactoryGirl.create(:answer)).to respond_to :question
   end
 
+  # Typically these low-level tests of associations are not tested (in my
+  # experience).  Maybe they should be, FYI.
   it 'should respond to Comments' do
     expect(FactoryGirl.create(:answer)).to respond_to :comments
   end

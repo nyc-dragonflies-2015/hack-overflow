@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    # This just makes me nervous.  WHY DO YOU NEED SO MUCH DATA?
     @question = Question.find(params[:id])
     @answers = @question.answers.all
     @comment = Comment.new

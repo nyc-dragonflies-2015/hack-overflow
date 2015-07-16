@@ -1,5 +1,7 @@
+<%# this id thing is just so ugly.  since this is a partial couldn't you pass in something from the parent that doesn't require this ugly string concatenation %>
   <%= form_for @comment, :html => { :class => "answer-comment-form", :id => "answer-comment-" + answer.id.to_s, style:"display:none;" } do |f| %>
     <%= f.text_area :body, size: "100x5" %>
+    <%# if it should be there, don't be a wimp: just call .id %>
     <%= f.hidden_field :user_id, value: current_user.try(:id) %>
     <%= f.hidden_field :commentable_type, value: "Answer" %>
     <%= f.hidden_field :commentable_id, value: answer.id %>

@@ -4,6 +4,8 @@ class VotesController < ApplicationController
     @vote = Vote.new
   end
 
+  # Obviously this could be really heavily refactored....
+  # As a baseline methods should be about 5-10 lines...
   def create
     @old_vote = Vote.find_by(user_id: current_user.id, voteable_id: vote_params["voteable_id"], voteable_type: vote_params["voteable_type"])
     if @old_vote && @old_vote.value != vote_params["value"]
